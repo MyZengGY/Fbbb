@@ -25,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="账号"
+            android:id="@+id/edit_zh"
             android:inputType="textEmailAddress"
             android:textColor="#FFFFFF" />
     </android.support.design.widget.TextInputLayout>
@@ -39,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="密码"
+            android:id="@+id/edit_mm"
             android:inputType="textPassword"
             android:textColor="#FFFFFF" />
     </android.support.design.widget.TextInputLayout>

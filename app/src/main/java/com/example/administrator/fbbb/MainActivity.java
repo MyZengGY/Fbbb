@@ -1,9 +1,11 @@
 package com.example.administrator.fbbb;
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.percent.PercentLayoutHelper;
 import android.support.percent.PercentRelativeLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -20,21 +22,23 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout llSignin;
     private Button btnSignup;
     private Button btnSignin;
+    private TextInputEditText edit_zh;
+    private TextInputEditText edit_mm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initFv();
+        initOcl();
+        edit_zh= (TextInputEditText) findViewById(R.id.edit_zh);
+        edit_mm= (TextInputEditText) findViewById(R.id.edit_mm);
 
-        tvSignupInvoker = (TextView) findViewById(R.id.tvSignupInvoker);
-        tvSigninInvoker = (TextView) findViewById(R.id.tvSigninInvoker);
 
-        btnSignup= (Button) findViewById(R.id.btnSignup);
-        btnSignin= (Button) findViewById(R.id.btnSignin);
 
-        llSignup = (LinearLayout) findViewById(R.id.llSignup);
-        llSignin = (LinearLayout) findViewById(R.id.llSignin);
-
+    }
+//监听
+    private void initOcl() {
         tvSignupInvoker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +65,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+//找控件
+    private void initFv() {
+        tvSignupInvoker = (TextView) findViewById(R.id.tvSignupInvoker);
+        tvSigninInvoker = (TextView) findViewById(R.id.tvSigninInvoker);
 
+        btnSignup= (Button) findViewById(R.id.btnSignup);
+        btnSignin= (Button) findViewById(R.id.btnSignin);
+
+        llSignup = (LinearLayout) findViewById(R.id.llSignup);
+        llSignin = (LinearLayout) findViewById(R.id.llSignin);
+    }
+//动画与控件位子
     private void showSignupForm() {
         PercentRelativeLayout.LayoutParams paramsLogin = (PercentRelativeLayout.LayoutParams) llSignin.getLayoutParams();
         PercentLayoutHelper.PercentLayoutInfo infoLogin = paramsLogin.getPercentLayoutInfo();
@@ -103,5 +118,11 @@ public class MainActivity extends AppCompatActivity {
         tvSigninInvoker.setVisibility(View.GONE);
         Animation clockwise= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_left_to_right);
         btnSignin.startAnimation(clockwise);
+        btnSignin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("MainActivity", edit_zh.getText()+"");
+            }
+        });
     }
 }
